@@ -12,9 +12,9 @@
     dest: ~/.dotfiles
 
 - name: Create .config
-    file:
-      path: ~/.config
-      state: directory
+  file:
+    path: ~/.config
+    state: directory
 
 - name: Link dotfile {{ item.path }} to {{ item.src }}
   file:
