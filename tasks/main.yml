@@ -1,0 +1,31 @@
+---
+# tasks file for ansible-dotfiles
+- name: Install pip
+  yum:	
+    name: python2-pip
+    state: present
+  become: True
+
+- name: Clone dotfiles
+  git:
+    repo: "{{ dotfiles_repo }}"
+    dest: ~/.dotfiles
+
+- name: Create .config
+    file:
+      path: ~/.config
+      state: directory
+
+- name: Link dotfile {{ item.path }} to {{ item.src }}
+  file:
+    path: ~/{{ item.path }}
+    src: ~/.dotfiles/{{ item.src }}
+    state: link
+    force: true
+  with_items: "{{ dotfiles_links }}"
+
+- name: Install Powerline
+  pip:
+    name: powerline-status
+    state: present
+    extra_args: "--user"

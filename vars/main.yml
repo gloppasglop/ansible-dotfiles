@@ -1,0 +1,12 @@
+---
+# vars file for ansible-dotfiles
+dotfiles_repo: https://github.com/gloppasglop/dotfiles.git
+dotfiles_links:
+  - path: .vimrc
+    src: vimrc
+  - path: .bashrc
+    src: bashrc
+  - path: .bash_profile
+    src: bash_profile
+  - path: .config/powerline
+    src: powerline
